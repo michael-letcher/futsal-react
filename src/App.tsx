@@ -1,6 +1,5 @@
 import React from "react";
-import "./App.css";
-import LoginBox from "./components/login/login";
+import LoginBox from "./components/login";
 import Navbar from "./components/navbar/navbar";
 
 function App() {
@@ -8,7 +7,9 @@ function App() {
     <div className="app">
       <Navbar></Navbar>
 
-      <LoginBox></LoginBox>
+      <div className="container">
+        <LoginBox></LoginBox>
+      </div>
     </div>
   );
 }
