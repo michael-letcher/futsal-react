@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { db } from "../fire";
 
 function Leagues() {
-  // Runs on load
+  
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   const [leages, setLeagues] = useState<any[]>([]);
 
-  const getData = () => {
-    console.warn("TEST");
+  function getData(): void {
+    db.collection('leagues').get().then((querySnapshot) => {
+      querySnapshot.forEach(league => {
+
+        console.log(league);
+      })
+      
+    });
 
     const data = [
       { id: "1", name: "Monty Sunday" },
@@ -17,7 +24,7 @@ function Leagues() {
     ];
 
     setLeagues(data);
-  };
+  }
 
   return (
     <div>
