@@ -10,7 +10,7 @@ function Navbar() {
     <div>
       <header className="app-header container">
         <img src={logo} className="app-logo" alt="logo" />
-        <span>Fustal Evolution</span>
+        <span>Evolution Fustal</span>
       </header>
       <nav className="nav-bar">
         <div className="container">
