@@ -1,16 +1,30 @@
 import React from "react";
-import LoginBox from "./components/login";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import AppRouter from "./app-router";
 import Navbar from "./components/navbar/navbar";
+
+import Home from "./pages/home";
+import About from "./pages/about";
+import Leagues from "./pages/leagues";
 
 function App() {
   return (
-    <div className="app">
-      <Navbar></Navbar>
+    <Router>
+      <div className="app">
+        <Navbar />
 
-      <div className="container">
-        <LoginBox></LoginBox>
+        <div className="container">
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/leagues" component={Leagues} />
+          </Switch>
+
+          {/* <LoginBox></LoginBox> */}
+          {/* <AppRouter></AppRouter> */}
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
