@@ -1,41 +1,53 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../fire";
+import { League } from "../models/league";
 
 function Leagues() {
-  
   useEffect(() => {
     getData();
   }, []);
 
-  const [leages, setLeagues] = useState<any[]>([]);
+  const [leagues, setLeagues] = useState<League[]>([]);
 
   function getData(): void {
-    db.collection('leagues').get().then((querySnapshot) => {
-      querySnapshot.forEach(league => {
+    db.collection("league")
+      .get()
+      .then((querySnapshot) => {
+        console.log("empty?", querySnapshot.empty);
+        console.log("docs", querySnapshot.docs);
 
-        console.log(league);
-      })
-      
-    });
+        // Cannot get Firebase to take my bloody interface!
+        const fetchedLeagues: React.SetStateAction<League[]> = [];
 
-    const data = [
-      { id: "1", name: "Monty Sunday" },
-      { id: "2", name: "Monty Saturday" },
-    ];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        querySnapshot.forEach((league: any) => {
+          console.log(league.data());
 
-    setLeagues(data);
+          fetchedLeagues.push(league.data());
+        });
+
+        console.log(fetchedLeagues);
+
+        setLeagues(fetchedLeagues);
+      });
   }
 
   return (
     <div>
       <h1>Leagues</h1>
 
-      <div>
-        <ul>
-          {/* {leages.map((league) => (
-            <li>{league.name}</li>
-          ))} */}
-        </ul>
+      <div style={{ display: "flex" }}>
+        {leagues.map((league) => (
+          <div
+            style={{
+              padding: "6px 12px",
+              border: "solid 1px",
+            }}
+            key={league.id}
+          >
+            {league.name}
+          </div>
+        ))}
       </div>
     </div>
   );

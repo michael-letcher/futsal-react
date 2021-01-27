@@ -12,7 +12,7 @@ const firebaseConfig = {
   projectId: "evolution-futsal",
   storageBucket: "evolution-futsal.appspot.com",
   messagingSenderId: "34116853640",
-  appId: "1:34116853640:web:cecea47ab23eed5af3a43d"
+  appId: "1:34116853640:web:cecea47ab23eed5af3a43d",
 };
 
 export var fire = firebase.initializeApp(firebaseConfig);
