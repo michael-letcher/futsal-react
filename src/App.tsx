@@ -1,11 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import AppRouter from "./app-router";
+import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
-
-import Home from "./pages/home";
-import About from "./pages/about";
-import Leagues from "./pages/leagues";
+import AppRouter from "./app-router";
 
 function App() {
   return (
@@ -14,14 +10,7 @@ function App() {
         <Navbar />
 
         <div className="container">
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/leagues" component={Leagues} />
-          </Switch>
-
-          {/* <LoginBox></LoginBox> */}
-          {/* <AppRouter></AppRouter> */}
+          <AppRouter></AppRouter>
         </div>
       </div>
     </Router>

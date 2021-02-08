@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import logo from "../../logo.svg";
 import "./navbar.scss";
 import "../../styles/container.css";
-
 import { Link } from "react-router-dom";
+import { AppUrls } from "../../app-router";
 
 function Navbar() {
   return (
@@ -16,19 +16,19 @@ function Navbar() {
         <div className="container">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to={AppUrls.home}>Home</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to={AppUrls.about}>About</Link>
             </li>
             <li>
-              <Link to="/about">Venues</Link>
+              <Link to={AppUrls.venues}>Venues</Link>
             </li>
             <li>
-              <Link to="/about">Rules</Link>
+              <Link to={AppUrls.home}>Rules</Link>
             </li>
             <li>
-              <Link to="/leagues">Leagues</Link>
+              <Link to={AppUrls.matches}>Matches</Link>
             </li>
           </ul>
         </div>

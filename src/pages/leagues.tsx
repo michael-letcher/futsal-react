@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../fire";
 import { League } from "../models/league";
+import { Link } from "react-router-dom";
+import DivisionList from "../components/division-list";
 
 function Leagues() {
   useEffect(() => {
@@ -34,19 +36,42 @@ function Leagues() {
 
   return (
     <div>
-      <h1>Leagues</h1>
+      {/* <h1>Leagues</h1> */}
 
-      <div style={{ display: "flex" }}>
+      <div
+        style={{
+          display: "inline-flex",
+          flexDirection: "column",
+        }}
+      >
+        <style>
+          {`
+            .list-item:hover {
+              color: #61DAFB
+            }
+          `}
+        </style>
+
         {leagues.map((league) => (
-          <div
-            style={{
-              padding: "6px 12px",
-              border: "solid 1px",
-            }}
+          <Link
+            style={{ color: "white", textDecoration: "none" }}
             key={league.id}
+            to={"/leagues/" + league.id}
           >
-            {league.name}
-          </div>
+            <div
+              className="list-item"
+              style={{
+                cursor: "pointer",
+                padding: "6px 12px",
+                border: "solid 1px",
+                marginBottom: "16px",
+              }}
+            >
+              {league.name}
+
+              <DivisionList divisionIds={league.divisionIds} />
+            </div>
+          </Link>
         ))}
       </div>
     </div>
