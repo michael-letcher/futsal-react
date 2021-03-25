@@ -3,6 +3,7 @@ import { db } from "../fire";
 import { League } from "../models/league";
 import { Link } from "react-router-dom";
 import DivisionList from "../components/division-list";
+import { getLeagues } from "../api/leagues";
 
 function Leagues() {
   useEffect(() => {
@@ -12,31 +13,12 @@ function Leagues() {
   const [leagues, setLeagues] = useState<League[]>([]);
 
   function getData(): void {
-    db.collection("league")
-      .get()
-      .then((querySnapshot) => {
-        console.log("empty?", querySnapshot.empty);
-        console.log("docs", querySnapshot.docs);
-
-        // Cannot get Firebase to take my bloody interface!
-        const fetchedLeagues: React.SetStateAction<League[]> = [];
-
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        querySnapshot.forEach((league: any) => {
-          console.log(league.data());
-
-          fetchedLeagues.push(league.data());
-        });
-
-        console.log(fetchedLeagues);
-
-        setLeagues(fetchedLeagues);
-      });
+    getLeagues().then((res) => setLeagues(res));
   }
 
   return (
     <div>
-      {/* <h1>Leagues</h1> */}
+      <h1>Leagues</h1>
 
       <div
         style={{
@@ -44,34 +26,19 @@ function Leagues() {
           flexDirection: "column",
         }}
       >
-        <style>
-          {`
-            .list-item:hover {
-              color: #61DAFB
-            }
-          `}
-        </style>
-
         {leagues.map((league) => (
-          <Link
-            style={{ color: "white", textDecoration: "none" }}
+          <div
             key={league.id}
-            to={"/leagues/" + league.id}
+            className="list-item"
+            style={{
+              padding: "6px 12px",
+              marginBottom: "16px",
+            }}
           >
-            <div
-              className="list-item"
-              style={{
-                cursor: "pointer",
-                padding: "6px 12px",
-                border: "solid 1px",
-                marginBottom: "16px",
-              }}
-            >
-              {league.name}
+            <h2>{league.name}</h2>
 
-              <DivisionList divisionIds={league.divisionIds} />
-            </div>
-          </Link>
+            <DivisionList divisionIds={league.divisionIds} />
+          </div>
         ))}
       </div>
     </div>

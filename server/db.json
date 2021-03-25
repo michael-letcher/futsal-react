@@ -1,0 +1,42 @@
+{
+  "leagues": [
+    {
+      "id": "c9876253-ce7f-4b71-8765-7b54799be5ef",
+      "divisionIds": [
+        "1dc112d4-f517-4d61-9b51-8b19733e1bd5"
+      ],
+      "name":"Montmorency Monday"
+    },
+    {
+      "id": "27ad2db3-c0bf-41f8-9e31-097561403b66",
+      "divisionIds": [
+        "bedecfd0-95bc-4f20-aa78-10254d28567b",
+        "a0cc93cd-c821-4bd3-8d2b-69f567ea5647"
+      ],
+      "name":"Montmorency Sunday"
+    }
+  ],
+  "divisions": [
+    {
+      "id": "a0cc93cd-c821-4bd3-8d2b-69f567ea5647",
+      "seasonIds": [],
+      "name": "Division 1"
+    },
+    {
+      "id": "bedecfd0-95bc-4f20-aa78-10254d28567b",
+      "seasonIds": [],
+      "name": "Division 2"
+    },
+    {
+      "id": "1dc112d4-f517-4d61-9b51-8b19733e1bd5",
+      "seasonIds": [],
+      "name": "Division 1"
+    }
+  ],
+  "seasons": [],
+  "rounds": [],
+  "games": [],
+  
+  "teams": [],
+  "players": []
+}

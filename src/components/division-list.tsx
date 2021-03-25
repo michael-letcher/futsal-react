@@ -3,7 +3,7 @@ import { db } from "../fire";
 import { Division } from "../models/divistion";
 import DivisionListItem from "./division-list-item";
 
-function DivisionList(props: { divisionIds: string[] }) {
+function DivisionList({ divisionIds }: { divisionIds: string[] }) {
   useEffect(() => {
     getDivisions();
   }, []);
@@ -11,26 +11,26 @@ function DivisionList(props: { divisionIds: string[] }) {
   const [divisions, setDivisions] = useState<Division[]>([]);
 
   function getDivisions(): void {
-    console.warn("get divs", props.divisionIds);
+    console.warn("get divs", divisionIds);
+    if (divisionIds.length) {
+      db.collection("divisions")
+        .where("id", "in", divisionIds)
+        .get()
+        .then((querySnapshot) => {
+          console.log("empty?", querySnapshot.empty);
+          console.log("docs", querySnapshot.docs);
 
-    db.collection("divisions")
-      .where("id", "in", props.divisionIds)
-      .get()
-      .then((querySnapshot) => {
-        console.log("empty?", querySnapshot.empty);
-        console.log("docs", querySnapshot.docs);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const fetchedDivisions: any = [];
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const fetchedDivisions: any = [];
+          querySnapshot.forEach((div) => {
+            console.log("div", div.data());
+            fetchedDivisions.push(div.data());
+          });
 
-        querySnapshot.forEach((div) => {
-          //
-          console.log("div", div);
-          fetchedDivisions.push(div);
+          setDivisions(fetchedDivisions);
         });
-
-        setDivisions(fetchedDivisions);
-      });
+    }
   }
 
   function saveDivision(): void {
@@ -44,10 +44,17 @@ function DivisionList(props: { divisionIds: string[] }) {
   }
 
   return (
-    <div>
-      {divisions.map((div) => (
-        <DivisionListItem key={div.id} division={div} />
-      ))}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      {divisionIds.length
+        ? divisions.map((div) => (
+            <DivisionListItem key={div.id} division={div} />
+          ))
+        : "There are no divisions for this leaguge. Check back later."}
     </div>
   );
 }
