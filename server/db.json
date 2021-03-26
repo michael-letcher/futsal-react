@@ -33,7 +33,15 @@
       "name": "Division 1"
     }
   ],
-  "seasons": [],
+  "seasons": [
+    {
+      "id": "6641ea0e-85b2-471b-a994-4069959ad816",
+      "name": "Winter",
+      "year": 2019,
+      "divisionId": "",
+      "roundIds": []
+    }
+  ],
   "rounds": [],
   "games": [],
   

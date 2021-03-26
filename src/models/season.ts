@@ -3,5 +3,5 @@ export interface Season {
   name: string;
   year: number;
   divisionId: string;
-  gameIds: string[];
+  roundIds: string[];
 }
