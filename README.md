@@ -35,11 +35,15 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-## Server
-
-`yarn server`
+## `yarn server`
 
 **Temp Server**
 Json Server - [Artical](https://medium.com/chaya-thilakumara/how-to-create-a-local-api-server-rest-api-for-testing-945bbb2d31b7)
 
-Will be using MongoDB
+Will be using MongoDB - [Deploying Monogo](https://phoenixnap.com/kb/docker-mongodb) via Docker
+
+**Node.JS Express Server**
+
+We want to use ES6. To enable follow [this](https://www.freecodecamp.org/news/how-to-enable-es6-and-beyond-syntax-with-node-and-express-68d3e11fe1ab/).
+
+To learn express, following this [backend tutorial](https://www.youtube.com/watch?v=o3ka5fYysBM).
