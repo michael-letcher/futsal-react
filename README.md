@@ -29,18 +29,13 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-## `yarn server`
+### `yarn server`
 
 **Temp Server**
-Json Server - [Artical](https://medium.com/chaya-thilakumara/how-to-create-a-local-api-server-rest-api-for-testing-945bbb2d31b7)
+[Json Server](https://medium.com/chaya-thilakumara/how-to-create-a-local-api-server-rest-api-for-testing-945bbb2d31b7)
 
-Will be using MongoDB - [Deploying Monogo](https://phoenixnap.com/kb/docker-mongodb) via Docker
+Could use MongoDB - [Deploying Monogo](https://phoenixnap.com/kb/docker-mongodb) via Docker
+Will use MongoDB via their Atlas platform for now.
 
 **Node.JS Express Server**
 
