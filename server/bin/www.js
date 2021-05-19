@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import debugLib from 'debug';
-import app from '../app';
+import app from '../src/app';
 import { createServer } from 'http';
 
 const debug = debugLib('express-app:server');
