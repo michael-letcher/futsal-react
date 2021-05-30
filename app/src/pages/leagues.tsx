@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { db } from "../fire";
-import { League } from "../models/league";
-import { Link } from "react-router-dom";
-import DivisionList from "../components/division-list";
-import { getLeagues } from "../api/leagues";
+import React, { useEffect, useState } from 'react';
+// import { Link } from "react-router-dom";
+// import { db } from "../fire";
+import { League } from '../models/league';
+import DivisionList from '../components/disvision-list/division-list';
+import { getLeagues } from '../api/leagues';
 
 function Leagues() {
   useEffect(() => {
@@ -13,7 +13,7 @@ function Leagues() {
   const [leagues, setLeagues] = useState<League[]>([]);
 
   function getData(): void {
-    getLeagues().then((res) => setLeagues(res));
+    getLeagues().then(res => setLeagues(res));
   }
 
   return (
@@ -22,17 +22,17 @@ function Leagues() {
 
       <div
         style={{
-          display: "inline-flex",
-          flexDirection: "column",
+          display: 'inline-flex',
+          flexDirection: 'column',
         }}
       >
-        {leagues.map((league) => (
+        {leagues.map(league => (
           <div
             key={league.id}
             className="list-item"
             style={{
-              padding: "6px 12px",
-              marginBottom: "16px",
+              padding: '6px 12px',
+              marginBottom: '16px',
             }}
           >
             <h2>{league.name}</h2>

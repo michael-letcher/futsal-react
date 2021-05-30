@@ -1,17 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { AppUrls } from "../app-router";
-import { Division } from "../models/divistion";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { AppUrls } from '../../app-router';
+import { Division } from '../../models/divistion';
 
 function DivisionListItem({ division }: { division: Division }) {
-  console.warn("DivisionListItem", division);
+  console.warn('DivisionListItem', division);
 
   return (
     <div
       style={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "space-between",
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-between',
       }}
     >
       <div>{division.name}</div>

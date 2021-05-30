@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { db } from '../fire';
-import { Division } from '../models/divistion';
+import { Division } from '../../models/divistion';
 import DivisionListItem from './division-list-item';
 
 function DivisionList({ divisionIds }: { divisionIds: string[] }) {
@@ -12,8 +12,8 @@ function DivisionList({ divisionIds }: { divisionIds: string[] }) {
 
   function getDivisions(): void {
     console.warn('get divs', divisionIds);
+    setDivisions([]);
 
-    fetch();
     // if (divisionIds.length) {
     //   db.collection('divisions')
     //     .where('id', 'in', divisionIds)

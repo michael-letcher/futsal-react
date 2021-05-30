@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-// import App from "./app";
 import LoginBox from './components/login';
 import About from './pages/about';
 import Admin from './pages/admin';

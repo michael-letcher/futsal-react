@@ -20,11 +20,13 @@ app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, 'public')));
 
+const PATH = '/api';
+
 // Routes
-app.use(indexRouter);
-app.use(usersRouter);
-app.use(userRouter);
-app.use(leagueRouter);
-app.use(divisionRouter);
+app.use(PATH, indexRouter);
+app.use(PATH, usersRouter);
+app.use(PATH, userRouter);
+app.use(PATH, leagueRouter);
+app.use(PATH, divisionRouter);
 
 export default app;

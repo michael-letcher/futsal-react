@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { getLeagues } from "../api/leagues";
-import { db, fb } from "../fire";
+import React, { useEffect, useState } from 'react';
+import { getLeagues } from '../api/leagues';
 // import { Division } from "../models/divistion";
-import { League } from "../models/league";
+import { League } from '../models/league';
 
 function CreateDivision({ leagueId }: { leagueId: string }) {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
 
   function generateDiv(): void {
-    db.collection("divisions")
-      .add({
-        leagueId,
-        name,
-        seasonIds: [],
-      })
-      .then((res) => {
-        db.collection("league")
-          .doc(leagueId)
-          .update({
-            divisionIds: fb.firestore.FieldValue.arrayUnion(res.id),
-          });
-      });
+    // db.collection('divisions')
+    //   .add({
+    //     leagueId,
+    //     name,
+    //     seasonIds: [],
+    //   })
+    //   .then(res => {
+    //     db.collection('league')
+    //       .doc(leagueId)
+    //       .update({
+    //         divisionIds: fb.firestore.FieldValue.arrayUnion(res.id),
+    //       });
+    //   });
   }
 
   return (
@@ -28,11 +27,11 @@ function CreateDivision({ leagueId }: { leagueId: string }) {
       <div>Create League</div>
 
       <label>
-        Name:{" "}
+        Name:{' '}
         <input
           type="text"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={e => setName(e.target.value)}
         />
       </label>
 
@@ -43,10 +42,10 @@ function CreateDivision({ leagueId }: { leagueId: string }) {
 
 function Admin() {
   const [leagues, setLeagues] = useState<League[]>([]);
-  const [leagueId, setLeagueId] = useState<string>("");
+  const [leagueId, setLeagueId] = useState<string>('');
 
   useEffect(() => {
-    getLeagues().then((leagues) => setLeagues(leagues));
+    getLeagues().then(leagues => setLeagues(leagues));
   }, []);
 
   return (
@@ -74,7 +73,7 @@ function Admin() {
             </tr>
           </thead>
           <tbody>
-            {leagues.map((league) => (
+            {leagues.map(league => (
               <tr key={league.id}>
                 <td>{league.name}</td>
                 <td>
