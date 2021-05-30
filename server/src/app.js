@@ -3,10 +3,12 @@ import { join } from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
+import { connect } from './db';
 import { indexRouter } from './routes/index';
 import { usersRouter } from './routes/users';
 import { userRouter } from './routes/user';
-import { connect } from './db';
+import { leagueRouter } from './routes/league';
+import { divisionRouter } from './routes/division';
 
 const app = express();
 connect();
@@ -22,5 +24,7 @@ app.use(express.static(join(__dirname, 'public')));
 app.use(indexRouter);
 app.use(usersRouter);
 app.use(userRouter);
+app.use(leagueRouter);
+app.use(divisionRouter);
 
 export default app;

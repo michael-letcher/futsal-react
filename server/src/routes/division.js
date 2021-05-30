@@ -1,17 +1,17 @@
 import { Router } from 'express';
-import { LeagueModel } from '../models/league.model';
+import { DivisionModel } from '../models/division.model';
 import { bodyMissing } from '../utils/messages';
 import { isEmpty } from '../utils/object';
 
-export const leagueRouter = Router();
+export const divisionRouter = Router();
 
 // CREATE
-leagueRouter.post('/league', (req, res) => {
+divisionRouter.post('/division', (req, res) => {
   if (isEmpty(req.body)) {
     return bodyMissing(res);
   }
 
-  let model = new LeagueModel(req.body);
+  let model = new DivisionModel(req.body);
   model.save().then(
     doc => {
       if (!doc || doc.length) {
@@ -27,12 +27,12 @@ leagueRouter.post('/league', (req, res) => {
 });
 
 // READ
-leagueRouter.get('/league/:id', (req, res) => {
+divisionRouter.get('/division/:id', (req, res) => {
   if (!req.params.id) {
     return res.status(400).send('Request param missing');
   }
 
-  LeagueModel.findById(req.params.id).then(
+  DivisionModel.findById(req.params.id).then(
     doc => {
       res.json(doc);
     },
@@ -43,12 +43,12 @@ leagueRouter.get('/league/:id', (req, res) => {
 });
 
 // UPDATE
-leagueRouter.put('/league/:id', (req, res) => {
+divisionRouter.put('/division/:id', (req, res) => {
   if (isEmpty(req.body)) {
     return bodyMissing(res);
   }
 
-  LeagueModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
+  DivisionModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(
       doc => {
         res.json(doc);
@@ -63,12 +63,12 @@ leagueRouter.put('/league/:id', (req, res) => {
 });
 
 // DELETE
-leagueRouter.delete('/league/:id', (req, res) => {
+divisionRouter.delete('/division/:id', (req, res) => {
   if (!req.params.id) {
     return res.status(400).send('Request param missing');
   }
 
-  LeagueModel.findByIdAndDelete(req.params.id)
+  DivisionModel.findByIdAndDelete(req.params.id)
     .then(
       doc => {
         res.json(doc);

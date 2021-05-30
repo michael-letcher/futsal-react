@@ -1,5 +1,5 @@
 { 
   "exec": "yarn run server:dev",
-  "watch": ["server/*", "public/*"],
+  "watch": ["src/*", "public/*"],
   "ignore": ["**/__tests__/**", "*.test.js", "*.spec.js"]
 }

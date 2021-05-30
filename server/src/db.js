@@ -2,11 +2,10 @@ import { connect as dbConnect } from 'mongoose';
 
 // const server = '';
 // const database = '';
-// const user = 'dbAdmin';
-// const password = 'xUoMXbWoR1XuLSx2';
+const user = 'dbAdmin';
+const password = 'xUoMXbWoR1XuLSx2';
 
-const serverUri =
-  'mongodb+srv://dbAdmin:xUoMXbWoR1XuLSx2@cluster-0.zr9r3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const serverUri = `mongodb+srv://${user}:${password}@cluster-0.zr9r3.mongodb.net/futsal?retryWrites=true&w=majority`;
 
 export const connect = () => {
   dbConnect(serverUri);

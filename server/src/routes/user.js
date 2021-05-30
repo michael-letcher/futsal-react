@@ -1,16 +1,19 @@
 import { Router } from 'express';
 import { UserModel } from '../models/user.model';
+import { bodyMissing } from '../utils/messages';
+import { isEmpty } from '../utils/object';
 
 export const userRouter = Router();
 
+// READ - Logged in
 userRouter.get('/user', (req, res) => {
   res.send('You have requested a user (assume logged in user)');
 });
 
 // CREATE
 userRouter.post('/user', (req, res) => {
-  if (!req.body) {
-    return res.status(400).send('Request body is missing');
+  if (isEmpty(req.body)) {
+    return bodyMissing(res);
   }
 
   let model = new UserModel(req.body);
@@ -46,8 +49,8 @@ userRouter.get('/user/:userId', (req, res) => {
 
 // UPDATE
 userRouter.put('/user/:userId', (req, res) => {
-  if (!req.body) {
-    return res.status(400).send('Missing update body');
+  if (isEmpty(req.body)) {
+    return bodyMissing(res);
   }
 
   UserModel.findByIdAndUpdate(req.params.userId, req.body, { new: true })

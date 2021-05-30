@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import debugLib from 'debug';
-import app from '../src/app';
+import app from '../app';
 import { createServer } from 'http';
 
 const debug = debugLib('express-app:server');
@@ -9,7 +9,7 @@ const debug = debugLib('express-app:server');
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
 
 /**
