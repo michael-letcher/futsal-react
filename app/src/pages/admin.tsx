@@ -45,7 +45,7 @@ function Admin() {
   const [leagueId, setLeagueId] = useState<string>('');
 
   useEffect(() => {
-    getLeagues().then(leagues => setLeagues(leagues));
+    getLeagues().then(res => setLeagues(Object.values(res.leagues)));
   }, []);
 
   return (
@@ -74,10 +74,10 @@ function Admin() {
           </thead>
           <tbody>
             {leagues.map(league => (
-              <tr key={league.id}>
+              <tr key={league._id}>
                 <td>{league.name}</td>
                 <td>
-                  <button onClick={() => setLeagueId(league.id)}>
+                  <button onClick={() => setLeagueId(league._id)}>
                     Create Division
                   </button>
                   <button>Delete</button>

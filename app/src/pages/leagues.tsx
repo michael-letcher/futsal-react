@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 // import { Link } from "react-router-dom";
-// import { db } from "../fire";
 import { League } from '../models/league';
 import DivisionList from '../components/disvision-list/division-list';
 import { getLeagues } from '../api/leagues';
@@ -13,7 +12,11 @@ function Leagues() {
   const [leagues, setLeagues] = useState<League[]>([]);
 
   function getData(): void {
-    getLeagues().then(res => setLeagues(res));
+    getLeagues().then(res => {
+      console.log(res);
+
+      setLeagues(Object.values(res.leagues));
+    });
   }
 
   return (
@@ -28,7 +31,7 @@ function Leagues() {
       >
         {leagues.map(league => (
           <div
-            key={league.id}
+            key={league._id}
             className="list-item"
             style={{
               padding: '6px 12px',

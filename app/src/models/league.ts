@@ -1,5 +1,5 @@
 export interface League {
-  id: string;
+  _id: string;
   name: string;
   divisionIds: string[];
 }
