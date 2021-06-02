@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
-// import { db } from '../fire';
+import { getLeagues } from '../../api/leagues';
 import { Division } from '../../models/divistion';
 import DivisionListItem from './division-list-item';
 
 function DivisionList({ divisionIds }: { divisionIds: string[] }) {
   useEffect(() => {
     getDivisions();
-  });
+  }, []);
 
   const [divisions, setDivisions] = useState<Division[]>([]);
 
   function getDivisions(): void {
     console.warn('get divs', divisionIds);
-    setDivisions([]);
+    if (divisionIds && divisionIds.length) {
+      getLeagues().then(res => {
+        setDivisions([]);
+      });
+    }
 
     // if (divisionIds.length) {
     //   db.collection('divisions')

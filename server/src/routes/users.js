@@ -3,7 +3,7 @@ import { UserModel } from '../models/user.model';
 
 export const usersRouter = Router();
 
-/* GET users listing. */
+// GET users
 usersRouter.get('/users', (req, res) => {
   UserModel.find({}, (err, docs) => {
     const userMap = {};

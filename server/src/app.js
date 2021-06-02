@@ -8,6 +8,7 @@ import { indexRouter } from './routes/index';
 import { usersRouter } from './routes/users';
 import { userRouter } from './routes/user';
 import { leagueRouter } from './routes/league';
+import { leaguesRouter } from './routes/leagues';
 import { divisionRouter } from './routes/division';
 
 const app = express();
@@ -26,6 +27,7 @@ const PATH = '/api';
 app.use(PATH, indexRouter);
 app.use(PATH, usersRouter);
 app.use(PATH, userRouter);
+app.use(PATH, leaguesRouter);
 app.use(PATH, leagueRouter);
 app.use(PATH, divisionRouter);
 

@@ -1,12 +1,19 @@
-// import { db } from "../fire";
-// import { League } from "../models/league";
+import axios from 'axios';
+import { League } from '../models/league';
+
+interface LeaguesPayload {
+  leagues: League[];
+  count: number;
+}
 
 export async function getLeagues() {
-  return [];
-  // const querySnapshot = await db.collection("league").get();
-  // const fetchedLeagues: League[] = [];
-  // querySnapshot.forEach((league) => {
-  //   fetchedLeagues.push(league.data() as League);
-  // });
-  // return fetchedLeagues;
+  return axios
+    .get<LeaguesPayload>('/api/leagues')
+    .then(res => {
+      console.warn('RESPONSE', res);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    });
 }
