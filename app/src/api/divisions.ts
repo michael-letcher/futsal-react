@@ -1,3 +1,3 @@
-export async function getDivisions(leagueId: string) {
-  return fetch('/api/');
+export async function getDivisions(ids: string[]) {
+  return false;
 }

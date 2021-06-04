@@ -6,6 +6,10 @@ export const leaguesRouter = Router();
 // READ
 leaguesRouter.get('/leagues', (req, res) => {
   LeagueModel.find({}, (err, docs) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+
     const docMap = {};
 
     if (docs && docs.length) {

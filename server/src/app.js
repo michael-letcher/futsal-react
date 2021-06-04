@@ -10,6 +10,7 @@ import { userRouter } from './routes/user';
 import { leagueRouter } from './routes/league';
 import { leaguesRouter } from './routes/leagues';
 import { divisionRouter } from './routes/division';
+import { divisionsRouter } from './routes/divisions';
 
 const app = express();
 connect();
@@ -30,5 +31,6 @@ app.use(PATH, userRouter);
 app.use(PATH, leaguesRouter);
 app.use(PATH, leagueRouter);
 app.use(PATH, divisionRouter);
+app.use(PATH, divisionsRouter);
 
 export default app;

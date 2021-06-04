@@ -1,43 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { getLeagues } from '../../api/leagues';
+import React, { useCallback, useEffect, useState } from 'react';
+import { getDivisions } from '../../api/divisions';
 import { Division } from '../../models/divistion';
 import DivisionListItem from './division-list-item';
 
 function DivisionList({ divisionIds }: { divisionIds: string[] }) {
+  const getData = useCallback(() => {
+    console.warn('get divs', divisionIds);
+    getDivisions(divisionIds).then(res => {
+      setDivisions([]);
+    });
+  }, [divisionIds]);
+
   useEffect(() => {
-    getDivisions();
-  }, []);
+    getData();
+  }, [getData]);
 
   const [divisions, setDivisions] = useState<Division[]>([]);
-
-  function getDivisions(): void {
-    console.warn('get divs', divisionIds);
-    if (divisionIds && divisionIds.length) {
-      getLeagues().then(res => {
-        setDivisions([]);
-      });
-    }
-
-    // if (divisionIds.length) {
-    //   db.collection('divisions')
-    //     .where('id', 'in', divisionIds)
-    //     .get()
-    //     .then(querySnapshot => {
-    //       console.log('empty?', querySnapshot.empty);
-    //       console.log('docs', querySnapshot.docs);
-
-    //       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    //       const fetchedDivisions: any = [];
-
-    //       querySnapshot.forEach(div => {
-    //         console.log('div', div.data());
-    //         fetchedDivisions.push(div.data());
-    //       });
-
-    //       setDivisions(fetchedDivisions);
-    //     });
-    // }
-  }
 
   // function saveDivision(): void {
   //   db.collection('divisions')
