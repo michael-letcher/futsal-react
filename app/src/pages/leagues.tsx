@@ -12,11 +12,7 @@ function Leagues() {
   const [leagues, setLeagues] = useState<League[]>([]);
 
   function getData(): void {
-    getLeagues().then(res => {
-      console.log(res);
-
-      setLeagues(Object.values(res.leagues));
-    });
+    getLeagues().then(res => setLeagues(Object.values(res.leagues)));
   }
 
   return (

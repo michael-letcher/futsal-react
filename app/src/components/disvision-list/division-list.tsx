@@ -1,13 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { getDivisions } from '../../api/divisions';
+import { getDivisionsByIds } from '../../api/divisions';
 import { Division } from '../../models/divistion';
 import DivisionListItem from './division-list-item';
 
 function DivisionList({ divisionIds }: { divisionIds: string[] }) {
   const getData = useCallback(() => {
     console.warn('get divs', divisionIds);
-    getDivisions(divisionIds).then(res => {
-      setDivisions([]);
+    getDivisionsByIds(divisionIds).then(res => {
+      console.log(res);
+
+      setDivisions(Object.values(res.leagues));
     });
   }, [divisionIds]);
 
