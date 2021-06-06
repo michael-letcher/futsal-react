@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Division } from '../models/divistion';
 
 interface DivisionPayload {
-  leagues: { [key: string]: Division };
+  divisions: { [key: string]: Division };
   count: number;
 }
 

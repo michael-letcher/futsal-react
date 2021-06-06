@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { LeagueModel } from '../models/league.model';
+import { createListPayload } from '../utils/object';
 
 export const leaguesRouter = Router();
 
@@ -10,12 +11,6 @@ leaguesRouter.get('/leagues', (req, res) => {
       return res.status(500).json(err);
     }
 
-    const docMap = {};
-
-    if (docs && docs.length) {
-      docs.forEach(league => (docMap[league._id] = league));
-    }
-
-    res.send({ leagues: docMap, count: docs ? docs.length : 0 });
+    res.send(createListPayload('leagues', docs));
   });
 });

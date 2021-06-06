@@ -6,12 +6,12 @@ const LeagueSchema = new Schema({
     required: true,
     unique: true,
   },
-  divisionIds: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Division',
-    },
-  ],
+  year: {
+    type: Number,
+  },
+  active: {
+    type: Boolean,
+  },
 });
 
 export const LeagueModel = model('League', LeagueSchema);

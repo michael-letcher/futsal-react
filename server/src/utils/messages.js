@@ -1,7 +1,7 @@
-export const bodyMissing = res => {
+export const bodyMissing = (res, message) => {
   if (!res) {
-    throw Error('Missing resposne object');
+    throw Error(message ? message : 'Missing resposne object');
   }
 
-  res.status(400).send('Request body is missing');
+  res.status(400).send(message ? message : 'Request body is missing');
 };

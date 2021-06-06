@@ -1,44 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getLeagues } from '../api/leagues';
-// import { Division } from "../models/divistion";
+import { CreateDivision } from '../components/create-division';
 import { League } from '../models/league';
-
-function CreateDivision({ leagueId }: { leagueId: string }) {
-  const [name, setName] = useState('');
-
-  function generateDiv(): void {
-    // db.collection('divisions')
-    //   .add({
-    //     leagueId,
-    //     name,
-    //     seasonIds: [],
-    //   })
-    //   .then(res => {
-    //     db.collection('league')
-    //       .doc(leagueId)
-    //       .update({
-    //         divisionIds: fb.firestore.FieldValue.arrayUnion(res.id),
-    //       });
-    //   });
-  }
-
-  return (
-    <>
-      <div>Create League</div>
-
-      <label>
-        Name:{' '}
-        <input
-          type="text"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-      </label>
-
-      <button onClick={generateDiv}>Create</button>
-    </>
-  );
-}
 
 function Admin() {
   const [leagues, setLeagues] = useState<League[]>([]);

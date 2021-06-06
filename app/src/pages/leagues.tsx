@@ -36,7 +36,7 @@ function Leagues() {
           >
             <h2>{league.name}</h2>
 
-            <DivisionList divisionIds={league.divisionIds} />
+            <DivisionList leagueId={league._id} />
           </div>
         ))}
       </div>

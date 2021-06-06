@@ -7,11 +7,11 @@ export const divisionRouter = Router();
 
 // CREATE
 divisionRouter.post('/division', (req, res) => {
-  if (isEmpty(req.body)) {
+  if (isEmpty(req.body.division)) {
     return bodyMissing(res);
   }
 
-  let model = new DivisionModel(req.body);
+  let model = new DivisionModel(req.body.division);
   model.save().then(
     doc => {
       if (!doc || doc.length) {
@@ -21,6 +21,7 @@ divisionRouter.post('/division', (req, res) => {
       res.status(201).send(doc);
     },
     err => {
+      console.error(err);
       res.status(500).json(err);
     },
   );

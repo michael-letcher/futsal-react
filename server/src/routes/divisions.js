@@ -1,11 +1,13 @@
 import { Router } from 'express';
 import { DivisionModel } from '../models/division.model';
+import { createListPayload } from '../utils/object';
 
 export const divisionsRouter = Router();
 
 // READ all
 divisionsRouter.get('/divisions', (req, res) => {
-  if (!req.query.ids) {
+  // ERROR
+  if (!req.query.ids && !req.query.leagueId) {
     DivisionModel.find({}, (err, docs) => {
       if (err) {
         return res.status(500).json(err);
@@ -16,9 +18,11 @@ divisionsRouter.get('/divisions', (req, res) => {
         docs.forEach(league => (docMap[league._id] = league));
       }
 
-      res.send({ divisions: docMap, count: docs ? docs.length : 0 });
+      res.send(createListPayload('divisions', docs));
     });
-  } else {
+  }
+  // GET BY IDS
+  else if (req.query.ids) {
     const ids = req.query.ids.split(',');
 
     DivisionModel.find({ _id: { $in: ids } }, (err, docs) => {
@@ -26,7 +30,20 @@ divisionsRouter.get('/divisions', (req, res) => {
         return res.status(500).json(err);
       }
 
-      res.json(docs);
+      res.send(createListPayload('divisions', docs));
+    });
+  }
+  // GET BY LEAGUE
+  else if (req.query.leagueId) {
+    const leagueId = req.query.leagueId;
+
+    DivisionModel.find({ leagueId: leagueId }, (err, docs) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+
+      // Should be sorted to keep a consistent return
+      res.send(createListPayload('divisions', docs));
     });
   }
 });
