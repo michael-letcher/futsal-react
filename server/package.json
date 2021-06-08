@@ -3,13 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "start": "nodemon",
     "server": "node dist/bin/www.js",
     "server:dev": "npm-run-all server:build server",
     "server:build": "npm-run-all server:clean server:transpile",
     "server:transpile": "babel ./src --out-dir dist",
     "server:clean": "rimraf dist",
-    "server:mock": "node mock/server.js --watch",
-    "server:watch": "nodemon"
+    "server:mock": "node mock/server.js --watch"
   },
   "dependencies": {
     "@babel/cli": "^7.13.10",
