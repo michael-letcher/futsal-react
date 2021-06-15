@@ -1,27 +1,26 @@
-// import "isomorphic-unfetch";
-import { getRootUrl } from "./getRootUrl";
+import axios from 'axios';
+import { getRootUrl } from './getRootUrl';
 
 export default async function sendRequest(
   path: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
 ) {
   const headers = {
     ...(options.headers || {}),
-    "Content-type": "application/json; charset=UTF-8",
+    'Content-type': 'application/json; charset=UTF-8',
   };
 
-  const response = await fetch(`${getRootUrl()}${path}`, {
-    method: "POST",
-    credentials: "same-origin",
+  const response = await axios(`${getRootUrl()}${path}`, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    method: 'POST' as any,
+    credentials: 'same-origin',
     ...options,
     headers,
   });
 
-  const data = await response.json();
-
-  if (data.error) {
-    throw new Error(data.error);
+  if (axios.isAxiosError(response)) {
+    throw new Error(response.message);
   }
 
-  return data;
+  return response.data;
 }
