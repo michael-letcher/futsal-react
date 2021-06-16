@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Division } from '../models/divistion';
+import sendRequest from './utils/sendRequest';
 
 const BASE_PATH = '/api/divisions';
 
@@ -9,25 +10,16 @@ interface DivisionPayload {
 }
 
 export async function getDivisions() {
-  const response = await axios.get<DivisionPayload>(BASE_PATH);
-
-  if (response.status !== 200) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  return response.data;
+  const data = await sendRequest<DivisionPayload>(BASE_PATH, { method: 'get' });
+  return data;
 }
 
 export async function getDivisionsByLeagueId(leagueId: string) {
-  const response = await axios.get<DivisionPayload>(
+  const data = await sendRequest<DivisionPayload>(
     `${BASE_PATH}?leagueId=${leagueId}`,
+    { method: 'get' },
   );
-
-  if (response.status !== 200) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  return response.data;
+  return data;
 }
 
 export async function getDivisionsByIds(leagueIds: string[]) {

@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginBox from './components/login';
 import About from './pages/about';
 import Admin from './pages/admin';
+import Fixture from './pages/fixture';
 import Home from './pages/home';
 import Leagues from './pages/leagues';
 
@@ -12,8 +13,10 @@ export const AppUrls = {
   signUp: '/sign-up',
   admin: '/admin',
   about: '/about',
+  rules: '/rules',
   venues: '/venues',
-  matches: '/matches',
+  fixture: '/fixture',
+  table: '/table',
 };
 
 function AppRouter() {
@@ -21,11 +24,10 @@ function AppRouter() {
     <Switch>
       <Route path={AppUrls.home} exact component={Home} />
       <Route path={AppUrls.about} component={About} />
-      <Route path={AppUrls.matches} exact component={Leagues} />
-      <Route path={AppUrls.matches + '/:divId'} component={Leagues} />
-      <Route path={AppUrls.matches + '/:divId'} component={Leagues} />
-      <Route path={AppUrls.matches + '/:divId/fixture'} component={Leagues} />
-      <Route path={AppUrls.matches + '/:divId/table'} component={Leagues} />
+      <Route path={AppUrls.fixture} exact component={Fixture} />
+      <Route path={AppUrls.fixture + '/:divId'} component={Fixture} />
+      <Route path={AppUrls.table} component={Leagues} />
+      <Route path={AppUrls.table + '/:divId'} component={Leagues} />
 
       <Route path={AppUrls.signUp} component={LoginBox} />
       <Route path={AppUrls.login} exact component={LoginBox} />
