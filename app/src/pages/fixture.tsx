@@ -18,13 +18,17 @@ export default function Fixture() {
     });
   }
 
+  const onClick = (id: string) => setSelectedLeague(id);
+
   return (
     <>
       <h2>Fixture</h2>
       <TabList
         list={leagues.map(l => ({
+          id: l._id,
           title: l.name,
           active: l._id === selectedLeague,
+          onClick,
         }))}
       ></TabList>
 

@@ -4,8 +4,6 @@ import { AppUrls } from '../../app-router';
 import { Division } from '../../models/divistion';
 
 function DivisionListItem({ division }: { division: Division }) {
-  console.warn('DivisionListItem', division);
-
   return (
     <div
       style={{

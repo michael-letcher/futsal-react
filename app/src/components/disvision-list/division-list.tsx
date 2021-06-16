@@ -5,9 +5,7 @@ import DivisionListItem from './division-list-item';
 
 function DivisionList({ leagueId }: { leagueId: string }) {
   const getData = useCallback(() => {
-    console.warn('get divs', leagueId);
     getDivisionsByLeagueId(leagueId).then(res => {
-      console.log('Found divs', res);
       if (res && res.divisions) {
         setDivisions(Object.values(res.divisions));
       }
