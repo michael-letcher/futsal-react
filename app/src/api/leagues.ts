@@ -4,16 +4,19 @@ import { League } from '../models/league';
 const BASE_PATH = '/api/leagues';
 
 interface LeaguesPayload {
-  leagues: { [key: string]: League };
+  leagues: League[];
   count: number;
 }
 
-export async function getLeagues() {
-  const response = await axios.get<LeaguesPayload>(BASE_PATH);
+export async function getLeagues(): Promise<LeaguesPayload> {
+  const response = await axios.get<League[]>(BASE_PATH);
 
   if (response.status !== 200) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
 
-  return response.data;
+  return {
+    leagues: response.data,
+    count: response.data.length
+  };
 }

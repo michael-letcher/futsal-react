@@ -5,21 +5,25 @@ import sendRequest from './utils/sendRequest';
 const BASE_PATH = '/api/divisions';
 
 interface DivisionPayload {
-  divisions: { [key: string]: Division };
+  divisions: Division[];
   count: number;
 }
 
 export async function getDivisions() {
-  const data = await sendRequest<DivisionPayload>(BASE_PATH, { method: 'get' });
+  const data = await sendRequest<Division[]>(BASE_PATH, { method: 'get' });
   return data;
 }
 
-export async function getDivisionsByLeagueId(leagueId: string) {
-  const data = await sendRequest<DivisionPayload>(
+export async function getDivisionsByLeagueId(leagueId: string): Promise<DivisionPayload> {
+  const data = await sendRequest<Division[]>(
     `${BASE_PATH}?leagueId=${leagueId}`,
     { method: 'get' },
   );
-  return data;
+  
+  return {
+    divisions: data,
+    count: data.length
+  };
 }
 
 export async function getDivisionsByIds(leagueIds: string[]) {

@@ -1,7 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const jsonServer = require("json-server");
 const server = jsonServer.create();
-const router = jsonServer.router("./server/mock/db.json");
+const path = require('path');
+const router = jsonServer.router(path.join(__dirname, 'db.json'));
 const middlewares = jsonServer.defaults({
   static: "./node_modules/json-server/public",
 });

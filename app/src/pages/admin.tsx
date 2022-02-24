@@ -37,10 +37,10 @@ function Admin() {
           </thead>
           <tbody>
             {leagues.map(league => (
-              <tr key={league._id}>
+              <tr key={league.id}>
                 <td>{league.name}</td>
                 <td>
-                  <button onClick={() => setLeagueId(league._id)}>
+                  <button onClick={() => setLeagueId(league.id)}>
                     Create Division
                   </button>
                   <button>Delete</button>

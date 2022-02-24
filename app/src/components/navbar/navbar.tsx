@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from '../../logo.svg';
+import logo from '../../assets/logo.svg';
 import './navbar.scss';
-import '../../styles/container.css';
 import { Link } from 'react-router-dom';
 import { AppUrls } from '../../app-router';
 

@@ -27,7 +27,7 @@ function Leagues() {
       >
         {leagues.map(league => (
           <div
-            key={league._id}
+            key={league.id}
             className="list-item"
             style={{
               padding: '6px 12px',
@@ -36,7 +36,7 @@ function Leagues() {
           >
             <h2>{league.name}</h2>
 
-            <DivisionList leagueId={league._id} />
+            <DivisionList leagueId={league.id} />
           </div>
         ))}
       </div>

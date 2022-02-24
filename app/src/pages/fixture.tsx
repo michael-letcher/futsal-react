@@ -1,39 +1,68 @@
 import React, { useEffect, useState } from 'react';
+import { getDivisionsByLeagueId } from '../api/divisions';
 import { getLeagues } from '../api/leagues';
 import DivisionList from '../components/disvision-list/division-list';
 import { TabList } from '../components/tab-list/tab-list';
+import { Division } from '../models/divistion';
 import { League } from '../models/league';
 
 export default function Fixture() {
-  useEffect(() => getData(), []);
-
   const [leagues, setLeagues] = useState<League[]>([]);
-
   const [selectedLeague, setSelectedLeague] = useState<string>();
+  
+  const [divisions, setDivisions] = useState<Division[]>([]);
+  const [selectedDivision, setSelectedDivision] = useState<string>();
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   function getData(): void {
     getLeagues().then(res => {
-      setLeagues(Object.values(res.leagues));
-      setSelectedLeague(Object.values(res.leagues)[0]._id);
+      setLeagues(res.leagues);
+      setSelectedLeague(res.leagues[0].id);
+      getDivisions();
     });
   }
+  
 
-  const onClick = (id: string) => setSelectedLeague(id);
+  function getDivisions(): void {
+    if(selectedLeague) {
+      getDivisionsByLeagueId(selectedLeague).then(res => {
+        if (res && res.divisions) {
+          setDivisions(res.divisions);
+          setSelectedDivision(res.divisions[0].id);
+        }
+      });
+    }
+  }
+
+  const onSelectLeague = (id: string) => setSelectedLeague(id);
+  const onSelectDivision = (id: string) => setSelectedDivision(id);
 
   return (
     <>
       <h2>Fixture</h2>
       <TabList
         list={leagues.map(l => ({
-          id: l._id,
+          id: l.id,
           title: l.name,
-          active: l._id === selectedLeague,
-          onClick,
+          active: l.id === selectedLeague,
+          onClick: onSelectLeague,
+        }))}
+      ></TabList>
+
+      <TabList
+        list={divisions.map(d => ({
+          id: d.id,
+          title: d.name,
+          active: d.id === selectedDivision,
+          onClick: onSelectDivision,
         }))}
       ></TabList>
 
       {selectedLeague ? (
-        <DivisionList leagueId={selectedLeague}></DivisionList>
+        'Show fixture'
       ) : null}
     </>
   );

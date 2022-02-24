@@ -13,10 +13,10 @@ function DivisionListItem({ division }: { division: Division }) {
       }}
     >
       <div>{division.name}</div>
-      <Link to={`${AppUrls}/${division._id}/table`}>
+      <Link to={`${AppUrls.table}/${division.id}`}>
         <div>Table</div>
       </Link>
-      <Link to={`${AppUrls}/${division._id}/fixture`}>
+      <Link to={`${AppUrls.fixture}/${division.id}`}>
         <div>Fixture</div>
       </Link>
     </div>

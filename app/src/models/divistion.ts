@@ -1,5 +1,5 @@
 export interface Division {
-  _id: string;
+  id: string;
   name: string;
   leagueId: string;
 }

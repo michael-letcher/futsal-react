@@ -27,7 +27,7 @@ function DivisionList({ leagueId }: { leagueId: string }) {
     >
       {divisions.length
         ? divisions.map(div => (
-            <DivisionListItem key={div._id} division={div} />
+            <DivisionListItem key={div.id} division={div} />
           ))
         : 'There are no divisions for this leaguge. Check back later.'}
     </div>
